@@ -18,10 +18,9 @@
         <p>Number of Guesses Left:</p>
         <p>What you have Guessed so far:</p>
     </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-
-    
 
         var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -30,56 +29,60 @@
         var numOfGuesses = 10;
         var guessList = [];
 
-        console.log("test");
-        document.onkeyup = function (event) {
-
-            var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        $(document).ready(function () {
 
 
-            var guessChoices = [];
+            console.log("test");
+            document.onkeyup = function (event) {
 
-            var playerGuesses = event.key;
-
-            var computerGuesses = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
+                var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 
-            if (options.indexOf(playerGuesses) > -1) {
+                var guessChoices = [];
 
-                if (playerGuesses === computerGuesses) {
-                    wins++;
-                    numOfGuesses = 10;
-                    guessChoices = [];
+                var playerGuesses = event.key;
+
+                var computerGuesses = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+
+                if (options.indexOf(playerGuesses) > -1) {
+
+                    if (playerGuesses === computerGuesses) {
+                        wins++;
+                        numOfGuesses = 10;
+                        guessChoices = [];
+                    }
+
+                    if (playerGuesses != computerGuesses) {
+                        numOfGuesses--;
+                        guessChoices.push(playerGuesses);
+                    }
+
+                    if (numOfGuesses === 0) {
+
+                        numOfGuesses = 10;
+                        losses++;
+                        guessChoices = [];
+
+
+                    }
+
                 }
+                var html =
+                    "<h1> The Psychic-Game </h1>" +
+                    "<h2>Guess the letter I am thinking of</h2>" +
+                    "<p>Number of Wins: " + wins + "</p>" +
+                    "<p>Number of Losses: " + losses + "</p>" +
+                    "<p>Number of Guesses Left: " + numOfGuesses + "</p>" +
+                    "<p>What you have Guessed so far: " + guessChoices.join(", ") + "</p>";
 
-                if (playerGuesses != computerGuesses) {
-                    numOfGuesses--;
-                    guessChoices.push(playerGuesses);
-                }
-
-                if (numOfGuesses === 0) {
-
-                    numOfGuesses = 10;
-                    losses++;
-                    guessChoices = [];
-
-
-                }
-
-            }
-            var html =
-                "<h1> The Psychic-Game </h1>" +
-                "<h2>Guess the letter I am thinking of</h2>" +
-                "<p>Number of Wins: " + wins + "</p>" +
-                "<p>Number of Losses: " + losses + "</p>" +
-                "<p>Number of Guesses Left: " + numOfGuesses + "</p>" +
-                "<p>What you have Guessed so far: " + guessChoices.join(", ") + "</p>";
-
-            document.querySelector("#game").innerHTML = html;
+                document.querySelector("#game").innerHTML = html;
 
 
 
-        };
+            };
+        });
 
     </script>
 

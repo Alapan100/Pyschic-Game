@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Psychic-Game</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -21,72 +21,71 @@
     </div>
 
 </body>
-    
-
-    <script type="text/javascript">
-
-        var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-        var wins = 0;
-        var losses = 0;
-        var numOfGuesses = 10;
-        var guessList = [];
-
-        $(document).ready(function () {
 
 
-            console.log("test");
-            document.onkeyup = function (event) {
+<script type="text/javascript">
 
-                var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-
-                var guessChoices = [];
-
-                var playerGuesses = event.key;
-
-                var computerGuesses = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    var wins = 0;
+    var losses = 0;
+    var numOfGuesses = 10;
+    var guessList = [];
 
 
 
-                if (options.indexOf(playerGuesses) > -1) {
 
-                    if (playerGuesses === computerGuesses) {
-                        wins++;
-                        numOfGuesses = 10;
-                        guessChoices = [];
-                    }
+    console.log("test");
+    document.onkeyup = function (event) {
 
-                    if (playerGuesses != computerGuesses) {
-                        numOfGuesses--;
-                        guessChoices.push(playerGuesses);
-                    }
-
-                    if (numOfGuesses === 0) {
-
-                        numOfGuesses = 10;
-                        losses++;
-                        guessChoices = [];
+        var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 
-                    }
+        var guessChoices = [];
 
-                }
-                var html =
-                    "<h1> The Psychic-Game </h1>" +
-                    "<h2>Guess the letter I am thinking of</h2>" +
-                    "<p>Number of Wins: " + wins + "</p>" +
-                    "<p>Number of Losses: " + losses + "</p>" +
-                    "<p>Number of Guesses Left: " + numOfGuesses + "</p>" +
-                    "<p>What you have Guessed so far: " + guessChoices.join(", ") + "</p>";
+        var playerGuesses = event.key;
 
-                document.querySelector("#game").innerHTML = html;
+        var computerGuesses = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 
 
-            };
-        });
+        if (options.indexOf(playerGuesses) > -1) {
 
-    </script>
+            if (playerGuesses === computerGuesses) {
+                wins++;
+                numOfGuesses = 10;
+                guessChoices = [];
+            }
+
+            if (playerGuesses != computerGuesses) {
+                numOfGuesses--;
+                guessChoices.push(playerGuesses);
+            }
+
+            if (numOfGuesses === 0) {
+
+                numOfGuesses = 10;
+                losses++;
+                guessChoices = [];
+
+
+            }
+
+        }
+        var html =
+            "<h1> The Psychic-Game </h1>" +
+            "<h2>Guess the letter I am thinking of</h2>" +
+            "<p>Number of Wins: " + wins + "</p>" +
+            "<p>Number of Losses: " + losses + "</p>" +
+            "<p>Number of Guesses Left: " + numOfGuesses + "</p>" +
+            "<p>What you have Guessed so far: " + guessChoices.join(", ") + "</p>";
+
+        document.querySelector("#game").innerHTML = html;
+
+
+
+    };
+
+</script>
 
 </html>
